@@ -1,0 +1,123 @@
+﻿@model Prodavnca_Projekat.Models.Proizvodi
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Proizvodi</h2>
+<div>
+	<table id="jqGrid"></table>
+	<div id="jqControls"></div>
+</div>
+
+@*Skripta za pokretanje tabele Proizvodi preko JQuery-a(jqGrid paket - Insert,Update,Delete)*@
+@section scripts
+{
+	<script>
+		$(function () {
+			$("#jqGrid").jqGrid({
+				url: "/Proizvodi/GetProizvodi",
+				dataType: 'json',
+				mtype: 'Get',
+				colNames: ['Proizvod ID', 'Naziv', 'Opis', 'Kategorija', 'Proizvodjac', 'Dobavljac', 'Cena'],
+				colModel: [
+					{ key: true, name: 'ProizvodID', sortable: true },
+					{ key: false, name: 'Naziv', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+					{ key: false, name: 'Opis', editable: true, edittype: 'text', editrules: { required: true } },
+					{ key: false, name: 'Kategorija', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+					{ key: false, name: 'Proizvodjac', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+					{ key: false, name: 'Dobavljac', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+					{ key: false, name: 'Cena', editable: true, edittype: 'text', editrules: { required: true } }],
+				pager: jQuery('#jqControls'),
+				rowNum: 10,
+				rowList: [10, 20, 30, 40, 50],
+				height: '100%',
+				viewrecords: true,
+				caption: 'Informacije o proizvodima',
+				emptyrecords: 'Ne postoje informacije o proizvodima',
+				jsonReader: {
+					root: 'rows',
+					page: 'page',
+					total: 'total',
+					records: 'records',
+					repeatitems: false,
+					Id: '0'
+				},
+				autowidth: true,
+				shringToFit: true,
+				refresh: true,
+				multiselect: false,
+				inlineEditing: { keys: true },
+				editurl: "/Proizvodi/Edit",
+				inlineNavOptions: {
+					edit: true,
+					edittext: 'Izmeni',
+					add: false,
+					save: true,
+					savetext: 'Sacuvaj',
+					cancel: true,
+					canceltext: 'Otkazi',
+					restoreAfterSelect: false
+				},
+				search: {
+					oData: ['sadrzi']
+				}
+			}).navGrid('#jqControls', {
+				edit: false, add: true, addtext: 'Dodaj', del: true, deltext: 'Izbrisi', search: true, searchtext: 'Pretrazi', refresh: true, refreshtext: 'Osvezi', closeAfterSearch: true, 
+					sopt: ['eq']
+			},
+				{
+					zIndex: 100,
+					url: '/Proizvodi/Edit',
+					closeOnEscape: true,
+					closeAfterEdit: true,
+					recreateForm: true,
+					afterComplete: function (response) {
+						if (response.responseText) {
+							alert(response.responseText);
+						}
+					}
+				},
+				{
+					zIndex: 100,
+					url: '/Proizvodi/Create',
+					closeOnEscape: true,
+					closeAfterEdit: true,
+					afterComplete: function (response) {
+						if (response.responseText) {
+							alert(response.responseText);
+						}
+					}
+				},
+				{
+					zIndex: 100,
+					url: '/Proizvodi/Delete',
+					closeOnEscape: true,
+					closeAfterEdit: true,
+					recreateForm: true,
+					msg: 'Da li ste sigurni da hocete da izbrisete proizvod?',
+					afterComplete: function (response) {
+						if (response.responseText) {
+							alert(response.responseText);
+						}
+					}
+				}).jqGrid("inlineNav");
+		});
+	</script>
+
+	@*Skirpte za jqGrid*@
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/i18n/min/grid.locale-sr.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.src.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.4/jquery.jqgrid.min.js"></script>
+	<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+	<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+	<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+	<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+}
+
