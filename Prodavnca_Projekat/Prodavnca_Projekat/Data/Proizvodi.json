@@ -1,0 +1,39 @@
+﻿[
+	{
+	 "ProizvodID": 1 , 
+	 "Naziv": "Makaze" ,
+	 "Opis": "Obicne makaze za secenje" ,
+	 "Kategorija": "Kancelarijski materijal" ,
+	 "Proizvodjac": "Stabilo" ,
+	 "Dobavljac": "Roda" ,
+	 "Cena": 500
+	},
+	{
+	 "ProizvodID": 2 ,
+	 "Naziv": "Olovke" ,
+	 "Opis": "Hemijske olovke za pisanje" ,
+	 "Kategorija": "Kancelarijski materijal" ,
+	 "Proizvodjac": "Stabilo" ,
+	 "Dobavljac": "Roda",
+	 "Cena": 200
+	},
+	{
+	 "ProizvodID": 3 ,
+	 "Naziv": "Busilica" ,
+	 "Opis": "Busilica za poslove po kancelariji" ,
+	 "Kategorija": "Elektricni alat" ,
+	 "Proizvodjac": "Bosch" ,
+	 "Dobavljac": "Maxi" ,
+	 "Cena": 2500
+	},
+	{
+	 "ProizvodID": 4 ,
+	 "Naziv": "Libela" ,
+	 "Opis": "Libela, siva, 40cm " ,
+	 "Kategorija": "Alat" ,
+	 "Proizvodjac": "Sparta" ,
+	 "Dobavljac": "Idea" ,
+	 "Cena": 250
+	}
+	]
+

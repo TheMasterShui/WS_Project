@@ -46,12 +46,12 @@ namespace Prodavnca_Projekat.Controllers
             var totalPages = (int)Math.Ceiling((float)totalRecords / (float)rows);
             if (sord.ToUpper() == "DESC")
             {
-                ProizvodiList = ProizvodiList.OrderByDescending(p => p.Naziv);
+                ProizvodiList = ProizvodiList.OrderByDescending(p => p.ProizvodID);
                 ProizvodiList = ProizvodiList.Skip(pageIndex * pageSize).Take(pageSize);
             }
             else
             {
-                ProizvodiList = ProizvodiList.OrderBy(p => p.Naziv);
+                ProizvodiList = ProizvodiList.OrderBy(p => p.ProizvodID);
                 ProizvodiList = ProizvodiList.Skip(pageIndex * pageSize).Take(pageSize);
             }
             //Search za Proizvode

@@ -94,3 +94,4 @@ C:\WS_Project\Prodavnca_Projekat\Prodavnca_Projekat\obj\Debug\Prodavnca_Projekat
 C:\WS_Project\Prodavnca_Projekat\Prodavnca_Projekat\obj\Debug\Prodavnca_Projekat.csproj.CopyComplete
 C:\WS_Project\Prodavnca_Projekat\Prodavnca_Projekat\obj\Debug\Prodavnca_Projekat.dll
 C:\WS_Project\Prodavnca_Projekat\Prodavnca_Projekat\obj\Debug\Prodavnca_Projekat.pdb
+C:\WS_Project\Prodavnca_Projekat\Prodavnca_Projekat\obj\Debug\Prodavnca_Projekat.csprojAssemblyReference.cache

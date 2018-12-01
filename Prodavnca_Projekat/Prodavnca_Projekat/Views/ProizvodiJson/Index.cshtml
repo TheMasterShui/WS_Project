@@ -1,0 +1,81 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Proizvodi JSON</h2>
+
+<div>
+	<table id="jqGrid"></table>
+	<div id="jqControls"></div>
+</div>
+
+@section scripts {
+	<script>
+		function GetJSON() {
+			var jsonFile = "/Data/Proizvodi.json";
+			return jsonFile;
+		}
+		$(function () {
+			$("#jqGrid").jqGrid({
+				url: GetJSON(),
+				datatype: "json",
+				editurl: 'clientArray',
+				@* Nazivi kolona *@
+			colNames: ['Proizvod ID', 'Naziv', 'Opis', 'Kategorija', 'Proizvodjac', 'Dobavljac', 'Cena'],
+				@* Model kolona *@
+			colModel: [
+				{ key: true, name: 'ProizvodID', sortable: true, editable: true },
+				{ key: false, name: 'Naziv', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+				{ key: false, name: 'Opis', editable: true, edittype: 'text', editrules: { required: true } },
+				{ key: false, name: 'Kategorija', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+				{ key: false, name: 'Proizvodjac', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+				{ key: false, name: 'Dobavljac', editable: true, edittype: 'text', editrules: { required: true }, search: true },
+				{ key: false, name: 'Cena', editable: true, edittype: 'text', editrules: { required: true } }],
+				pager: jQuery('#jqControls'),
+					rowNum: 10,
+					rowList: [10, 20, 30, 40, 50],
+					height: '100%',
+					viewrecords: true,
+					caption: 'Informacije o proizvodima',
+					emptyrecords: 'Ne postoje informacije o proizvodima',
+				jsonReader: {					
+					repeatitems: false,
+					cell: "",
+					id: '0',
+				},
+				autowidth: true,
+				shringToFit: true,
+				refresh: true,
+				multiselect: false,
+				inlineEditing: { keys: true },
+				onSelectRow: function (id) {
+					getID = jQuery("#datagrid").jqGrid('getCell', id, 'ProizvodID')
+				},
+				search: {
+					oData: ['sadrzi']
+				}
+		}).navGrid('#jqControls', {
+			edit: true, add: true, del: true, edittext: 'Izmeni', addtext: 'Dodaj', deltext: 'Izbrisi', search: true, searchtext: 'Pretrazi', refresh: true, refreshtext: 'Osvezi', closeAfterSearch: true,
+			sopt: ['eq'],
+			}).jqGrid('inlineNav', pagerid, parameters);
+		});
+	</script>
+
+	@*Skirpte za jqGrid*@
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/i18n/min/grid.locale-sr.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/jquery.jqgrid.src.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.4/jquery.jqgrid.min.js"></script>
+	<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+	<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+	<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+	<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+
+}
+

@@ -13,13 +13,15 @@
 @*Skripta za pokretanje tabele Proizvodi preko JQuery-a(jqGrid paket - Insert,Update,Delete)*@
 @section scripts
 {
-	<script>
+<script>
 		$(function () {
 			$("#jqGrid").jqGrid({
 				url: "/Proizvodi/GetProizvodi",
 				dataType: 'json',
 				mtype: 'Get',
+				@*Nazivi kolona*@
 				colNames: ['Proizvod ID', 'Naziv', 'Opis', 'Kategorija', 'Proizvodjac', 'Dobavljac', 'Cena'],
+				@*Model kolona*@
 				colModel: [
 					{ key: true, name: 'ProizvodID', sortable: true },
 					{ key: false, name: 'Naziv', editable: true, edittype: 'text', editrules: { required: true }, search: true },
@@ -60,13 +62,14 @@
 					restoreAfterSelect: false
 				},
 				search: {
-					oData: ['sadrzi']
+					oData: ['contains']
 				}
 			}).navGrid('#jqControls', {
-				edit: false, add: true, addtext: 'Dodaj', del: true, deltext: 'Izbrisi', search: true, searchtext: 'Pretrazi', refresh: true, refreshtext: 'Osvezi', closeAfterSearch: true, 
+				edit: false, add: true, addtext: 'Dodaj', del: true, deltext: 'Izbrisi', search: true, searchtext: 'Pretrazi', refresh: true, refreshtext: 'Osvezi', closeAfterSearch: true,
 					sopt: ['eq']
 			},
 				{
+					@*EDIT za jqGrid iz ProizvodiController-a*@
 					zIndex: 100,
 					url: '/Proizvodi/Edit',
 					closeOnEscape: true,
@@ -79,6 +82,7 @@
 					}
 				},
 				{
+					@*CREATE za jqGrid iz ProizvodiController-a*@
 					zIndex: 100,
 					url: '/Proizvodi/Create',
 					closeOnEscape: true,
@@ -90,6 +94,7 @@
 					}
 				},
 				{
+					@*DELETE za jqGrid iz ProizvodiController-a*@
 					zIndex: 100,
 					url: '/Proizvodi/Delete',
 					closeOnEscape: true,
@@ -103,7 +108,7 @@
 					}
 				}).jqGrid("inlineNav");
 		});
-	</script>
+</script>
 
 	@*Skirpte za jqGrid*@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.15.5/css/ui.jqgrid.min.css">

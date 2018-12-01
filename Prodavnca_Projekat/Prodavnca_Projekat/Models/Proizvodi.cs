@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Prodavnca_Projekat.Models
 {
+    // Model tabele iz baze sa SQL Servera
     [Table(name: "Proizvodi")]
     public class Proizvodi
     {
@@ -35,7 +36,8 @@ namespace Prodavnca_Projekat.Models
         [Required(ErrorMessage = "Polje 'Dobavljac' je obavezno!")]
         [StringLength(50)]
         public string Dobavljac { get; set; }
-        
+
+        [Required(ErrorMessage = "Polje 'Cena' je obavezno!")]
         public decimal Cena { get; set; }
 
 
